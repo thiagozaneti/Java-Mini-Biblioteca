@@ -1,0 +1,147 @@
+Visão geral
+
+Construa um aplicativo de linha de comando para gerenciar livros, usuários e empréstimos de uma biblioteca pequena. Nada de banco de dados: use memória e gravação simples em arquivo (CSV ou JSON) opcional.
+
+Regras de negócio (núcleo)
+
+Cadastro de Livro
+
+Campos: id (gerado), titulo, autor, ano, genero, qtdeExemplares.
+
+Não permitir qtdeExemplares < 0.
+
+Cadastro de Usuário
+
+Campos: id (gerado), nome, email, tipo (ALUNO ou PROFESSOR).
+
+Empréstimo
+
+Um usuário pode pegar no máximo:
+
+3 livros se ALUNO, 5 se PROFESSOR.
+
+Duração padrão: 7 dias (aluno) / 14 dias (professor).
+
+Só permitir empréstimo se houver exemplares disponíveis.
+
+Devolução
+
+Atualiza exemplar disponível.
+
+Se atraso, calcular multa: R$ 1,50/dia (Aluno) e R$ 1,00/dia (Professor).
+
+Relatórios
+
+Top 3 livros mais emprestados.
+
+Listar usuários com empréstimos em atraso.
+
+Buscar livros por título/autor (parcial, case-insensitive).
+
+Requisitos técnicos (o que deve aparecer no código)
+
+Fundamentos & Controle
+
+Menu em loop (while) com opções numéricas e validação de entrada.
+
+Uso de if/else, switch, for/foreach.
+
+Classes & Métodos
+
+Classes: Livro, Usuario (abstrata), Aluno, Professor, Emprestimo, BibliotecaApp (CLI).
+
+Métodos de fábrica/validação; toString; utilitário para datas.
+
+Arrays & Collections
+
+Armazenar livros e usuários inicialmente em arrays fixos (mín. 10) e depois migrar/operar com List/Map.
+
+Ordenações: por título e por quantidade de empréstimos (Comparable/Comparator).
+
+Map<Usuario, List<Emprestimo>> ou Map<Integer, Emprestimo> para buscas rápidas.
+
+Orientação a Objetos
+
+Herança: Usuario → Aluno / Professor.
+
+Polimorfismo: cálculo de prazo e multa é específico por tipo de usuário (método sobrescrito).
+
+Encapsulamento com getters/setters; equals/hashCode em Livro (baseado em titulo+autor ou id).
+
+Interface Multavel (com calcularMulta(diasAtraso)).
+
+Exceções
+
+Exceções personalizadas: SemExemplaresException, LimiteEmprestimosException, UsuarioNaoEncontradoException.
+
+try/catch no fluxo do menu.
+
+Persistência simples (opcional)
+
+Gravar/ler catálogos em CSV/JSON (uma classe RepositorioArquivo).
+
+Testes (bônus)
+
+3 testes JUnit: criar empréstimo, calcular multa, impedir excesso de livros.
+
+Esqueleto de funcionalidades (sem código)
+
+Menu principal (exemplo):
+
+Cadastrar livro
+
+Cadastrar usuário
+
+Emprestar livro
+
+Devolver livro
+
+Buscar livros (título/autor)
+
+Relatórios (top 3, atrasos)
+
+Salvar/Carregar dados (opcional)
+
+Sair
+
+Dados de exemplo (para digitar no app)
+
+Livros:
+
+(título, autor, ano, gênero, exemplares)
+
+“Clean Code”, “Robert C. Martin”, 2008, “Engenharia”, 4
+
+“Dom Casmurro”, “Machado de Assis”, 1899, “Romance”, 2
+
+“Effective Java”, “Joshua Bloch”, 2018, “Engenharia”, 3
+
+Usuários:
+
+Aluno: Ana Silva (ana@ex.com
+)
+
+Professor: Carlos Souza (carlos@ex.com
+)
+
+Critérios de aceitação (o que deve funcionar)
+
+Impedir empréstimo quando não há exemplares.
+
+Respeitar limites por tipo de usuário.
+
+Devolução repõe exemplar e calcula multa correta.
+
+Busca parcial retorna resultados corretos.
+
+Relatório “Top 3” ordena por número de empréstimos.
+
+Nenhuma operação quebra o app com entradas inválidas (tratamento básico).
+
+Desafios (escolha alguns)
+
+Paginação/scroll de resultados no console.
+
+Exportar relatório para CSV.
+
+Suporte a reserva/espera quando livro está indisponível.

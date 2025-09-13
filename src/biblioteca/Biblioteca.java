@@ -6,7 +6,7 @@ import java.util.List;
 import livro.Livro;
 
 public class Biblioteca{
-	 private List<Livro> biblioteca = new ArrayList<>();
+	 public List<Livro> biblioteca = new ArrayList<>();
     
     
     public boolean cadastrarLivro(Livro livro) {
